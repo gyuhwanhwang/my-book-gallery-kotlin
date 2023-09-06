@@ -18,6 +18,8 @@ plugins {
     kotlin("kapt") version kotlinVersion // properties
 }
 
+val queryDslVersion = "5.0.0"
+
 allOpen {
     annotation("jakarta.persistence.Entity")
     annotation("jakarta.persistence.Embeddable")
@@ -36,9 +38,10 @@ dependencies {
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
-    runtimeOnly("com.h2database:h2")
 
+    // querydsl
+    implementation("com.querydsl:querydsl-jpa:$queryDslVersion:jakarta")
+    kapt("com.querydsl:querydsl-apt:$queryDslVersion:jakarta")
     kapt("org.springframework.boot:spring-boot-configuration-processor")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
@@ -46,6 +49,9 @@ dependencies {
     }
     testImplementation("com.ninja-squad:springmockk:4.0.0")
 
+    runtimeOnly("com.h2database:h2")
+
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
 }
 
 tasks.withType<KotlinCompile> {
