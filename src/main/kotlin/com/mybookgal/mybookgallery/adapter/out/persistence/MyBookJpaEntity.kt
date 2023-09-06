@@ -13,7 +13,7 @@ class MyBookJpaEntity(
     var content: String,
     @Column(name = "added_at")
     var addedAt: LocalDateTime = LocalDateTime.now(),
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     var author: UserJpaEntity
 ) {
