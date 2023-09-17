@@ -1,3 +1,6 @@
+### SECRET ###
+/src/main/resources/application-external-api.yml
+
 HELP.md
 .gradle
 build/
